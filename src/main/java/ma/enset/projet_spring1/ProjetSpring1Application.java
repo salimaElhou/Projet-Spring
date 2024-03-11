@@ -1,5 +1,6 @@
 package ma.enset.projet_spring1;
 
+import jakarta.servlet.ServletOutputStream;
 import ma.enset.projet_spring1.Repository.PatientRepository;
 import ma.enset.projet_spring1.entities.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +61,16 @@ public class ProjetSpring1Application implements CommandLineRunner {
         patientsTrouves.forEach(p ->{
             System.out.println(p.toString());
         });
+        //- Chercher des patients avec Search
+        // ou bien findByPriceGreaterThan(3000) le cas de produit
+        System.out.println("---------------");
+        List<Patient> patientsSearch = patientRepository.Search("%S%"); // Remplacez 'nomRecherche' par le nom que vous recherchez
+        System.out.println("la list des patients par Nom (Search) : ");
+        patientsSearch.forEach(p ->{
+            System.out.println(p.toString());
+        });
+
+
 
         // - Mettre à jour un patient
         Patient patient1= patientRepository.findById(Long.valueOf(1)).orElse(null);
